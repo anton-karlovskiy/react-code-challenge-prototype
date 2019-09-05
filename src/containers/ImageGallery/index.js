@@ -7,14 +7,14 @@ import LoadMoreBtn from '../../components/LoadMoreBtn';
 import Spinner from '../../components/Spinner';
 import { API_URL } from '../../config';
 import './image-gallery.css';
-import { useConnectionEffectiveType } from '../../utils/hooks';
+import { useEffectiveConnectionType } from '../../utils/hooks';
 
 const ImageGallery = () => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [results, setResults] = useState([]);
 
-  const connectionEffectiveType = useConnectionEffectiveType();
+  const connectionEffectiveType = useEffectiveConnectionType();
   let limit;
   switch(connectionEffectiveType) {
     case 'slow-2g':
