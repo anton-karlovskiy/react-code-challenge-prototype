@@ -1,12 +1,12 @@
 
 import { takeLatest } from 'redux-saga/effects';
 
-import * as doubleCalcActions from '../actions/doubleSpin';
-import * as doubleCalcSagas from './doubleSpin';
+import * as galleryImagesActions from '../actions/gallery-images';
+import * as galleryImagesSagas from './gallery-images';
 
 export default function* saga() {
   const relations = [
-    [doubleCalcActions, doubleCalcSagas],
+    [galleryImagesActions, galleryImagesSagas]
   ]
 
   for (const [actions, sagas] of relations) {

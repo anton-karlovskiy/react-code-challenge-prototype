@@ -1,11 +1,11 @@
 
 import { combineReducers } from 'redux';
 
-import spin from './spin';
+import galleryImages from './gallery-images';
 
 export default combineReducers({
   ...Object.entries({
-    spin
+    galleryImages
   }).reduce(
     (acc, [key, createReducer]) => ({
       ...acc,

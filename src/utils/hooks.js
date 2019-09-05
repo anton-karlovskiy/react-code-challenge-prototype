@@ -18,6 +18,7 @@ const useEffectiveConnectionType = () => {
     return () => {
       navigatorConnection && navigatorConnection.removeEventListener('change', updateECTStatus);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { effectiveConnectionType, updateECTStatus };
