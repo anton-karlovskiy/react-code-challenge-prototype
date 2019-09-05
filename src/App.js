@@ -2,14 +2,14 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import Spin from './components/Spin';
+import ImageGallery from './containers/ImageGallery';
 import { configureStore } from './store';
 
 const store = configureStore();
 
 const App = () => (
   <Provider store={store}>
-    <Spin />
+    <ImageGallery />
   </Provider>
 );
 
