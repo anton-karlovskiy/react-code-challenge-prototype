@@ -5,19 +5,15 @@ import FourColGrid from '../../components/FourColGrid';
 import ImageThumb from '../../components/ImageThumb';
 import LoadMoreBtn from '../../components/LoadMoreBtn';
 import Spinner from '../../components/Spinner';
-// ray test touch <
 import ImagesModal from '../../components/ImagesModal';
-// ray test touch >
 import { useEffectiveConnectionType } from '../../utils/hooks';
 import { connectTo } from '../../utils/generic';
 import { getGalleryImages } from '../../actions/gallery-images';
 import './image-gallery.css';
 
 const ImageGallery = ({ getGalleryImages, isLoading, results, favorites }) => {
-  // ray test touch <
   const [isImagesModalOpen, setImagesModalOpen] = useState(false);
   const [currentModalIndex, setCurrentModalIndex] = useState(0);
-  // ray test touch >
 
   useEffect(() => {
     loadMoreResults();
@@ -46,7 +42,6 @@ const ImageGallery = ({ getGalleryImages, isLoading, results, favorites }) => {
     getGalleryImages(limit);
   };
 
-  // ray test touch <
   const openImagesModal = imageIndex => {
     setImagesModalOpen(true);
     setCurrentModalIndex(imageIndex);
@@ -57,10 +52,8 @@ const ImageGallery = ({ getGalleryImages, isLoading, results, favorites }) => {
   };
 
   const srcs = results.map(result => ({src: result.url}));
-  // ray test touch >
 
   return (
-    // ray test touch <
     <Fragment>
       <div className='home'>
         <div className='home-grid'>
@@ -97,7 +90,6 @@ const ImageGallery = ({ getGalleryImages, isLoading, results, favorites }) => {
         close={closeImagesModal}
         currentIndex={currentModalIndex} />
     </Fragment>
-    // ray test touch >
   );
 };
 

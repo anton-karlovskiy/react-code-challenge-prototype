@@ -1,5 +1,4 @@
 
-// ray test touch <
 import React from 'react';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 
@@ -16,4 +15,3 @@ const ImagesModal = ({ srcs, isOpen, close, currentIndex }) => {
 };
 
 export default ImagesModal;
-// ray test touch >
