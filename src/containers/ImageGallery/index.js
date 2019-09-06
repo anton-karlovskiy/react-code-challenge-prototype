@@ -5,12 +5,12 @@ import FourColGrid from '../../components/FourColGrid';
 import ImageThumb from '../../components/ImageThumb';
 import LoadMoreBtn from '../../components/LoadMoreBtn';
 import Spinner from '../../components/Spinner';
-import './image-gallery.css';
 import { useEffectiveConnectionType } from '../../utils/hooks';
 import { connectTo } from '../../utils/generic';
 import { getGalleryImages } from '../../actions/gallery-images';
+import './image-gallery.css';
 
-const ImageGallery = ({ getGalleryImages, isLoading, results }) => {
+const ImageGallery = ({ getGalleryImages, isLoading, results, favorites }) => {
   const connectionEffectiveType = useEffectiveConnectionType();
   let limit;
   switch(connectionEffectiveType) {
@@ -42,7 +42,7 @@ const ImageGallery = ({ getGalleryImages, isLoading, results }) => {
     <div className='home'>
       <div className='home-grid'>
         <FourColGrid
-          header='Image Gallery'
+          header={`Number of Favorites: ${favorites.length}`}
           loading={isLoading}>
           { results.map(result => {
             return (
@@ -69,7 +69,8 @@ const ImageGallery = ({ getGalleryImages, isLoading, results }) => {
 
 const mapStateToProps = state => ({
   isLoading: state.galleryImages.isFetching,
-  results: state.galleryImages.results
+  results: state.galleryImages.results,
+  favorites: state.favorites
 });
 
 const mapActionsToProps = {
