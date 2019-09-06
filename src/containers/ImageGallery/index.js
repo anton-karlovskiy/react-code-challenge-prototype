@@ -1,16 +1,29 @@
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 
 import FourColGrid from '../../components/FourColGrid';
 import ImageThumb from '../../components/ImageThumb';
 import LoadMoreBtn from '../../components/LoadMoreBtn';
 import Spinner from '../../components/Spinner';
+// ray test touch <
+import ImagesModal from '../../components/ImagesModal';
+// ray test touch >
 import { useEffectiveConnectionType } from '../../utils/hooks';
 import { connectTo } from '../../utils/generic';
 import { getGalleryImages } from '../../actions/gallery-images';
 import './image-gallery.css';
 
 const ImageGallery = ({ getGalleryImages, isLoading, results, favorites }) => {
+  // ray test touch <
+  const [isImagesModalOpen, setImagesModalOpen] = useState(false);
+  const [currentModalIndex, setCurrentModalIndex] = useState(0);
+  // ray test touch >
+
+  useEffect(() => {
+    loadMoreResults();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const connectionEffectiveType = useEffectiveConnectionType();
   let limit;
   switch(connectionEffectiveType) {
@@ -29,41 +42,62 @@ const ImageGallery = ({ getGalleryImages, isLoading, results, favorites }) => {
       break;
   }
 
-  useEffect(() => {
-    loadMoreResults();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const loadMoreResults = () => {
     getGalleryImages(limit);
   };
 
+  // ray test touch <
+  const openImagesModal = imageIndex => {
+    setImagesModalOpen(true);
+    setCurrentModalIndex(imageIndex);
+  };
+
+  const closeImagesModal = () => {
+    setImagesModalOpen(false);
+  };
+
+  const srcs = results.map(result => ({src: result.url}));
+  // ray test touch >
+
   return (
-    <div className='home'>
-      <div className='home-grid'>
-        <FourColGrid
-          header={`Number of Favorites: ${favorites.length}`}
-          loading={isLoading}>
-          { results.map(result => {
-            return (
-              <ImageThumb
-                key={result.id}
-                id={result.id}
-                url={result.url}
-                title={result.title}
-                clickable
-                thumbnailUrl={result.thumbnailUrl} />
-            );
-          }) }
-        </FourColGrid>
-        { isLoading && <Spinner /> }
-        {/* TODO: API needs to provide total pages and current page e.g. https://api.themoviedb.org/3/movie/popular?api_key=844dba0bfd8f3a4f3799f6130ef9e335&language=en-US&page=3 */}
-        {/* here is error prone in case pagination might reach the end of resources */}
-        { !isLoading && (
-          <LoadMoreBtn text='Load More' onClick={loadMoreResults} />
-        ) }
+    // ray test touch <
+    <Fragment>
+      <div className='home'>
+        <div className='home-grid'>
+          <FourColGrid
+            header={`Number of Favorites: ${favorites.length}`}
+            loading={isLoading}>
+            { results.map((result, index) => {
+              const clickHandler = () => {
+                openImagesModal(index);
+              };
+              return (
+                <ImageThumb
+                  key={result.id}
+                  id={result.id}
+                  url={result.url}
+                  title={result.title}
+                  clickable // TODO: cusor pointer
+                  clickHandler={clickHandler}
+                  thumbnailUrl={result.thumbnailUrl} /> 
+              );
+            }) }
+          </FourColGrid>
+          { isLoading && <Spinner /> }
+          {/* TODO: API needs to provide total pages and current page e.g. https://api.themoviedb.org/3/movie/popular?api_key=844dba0bfd8f3a4f3799f6130ef9e335&language=en-US&page=3 */}
+          {/* here is error prone in case pagination might reach the end of resources */}
+          { !isLoading && (
+            <LoadMoreBtn text='Load More' onClick={loadMoreResults} />
+          ) }
+        </div>
       </div>
-    </div>
+      <ImagesModal
+        srcs={srcs}
+        isOpen={isImagesModalOpen}
+        close={closeImagesModal}
+        currentIndex={currentModalIndex} />
+    </Fragment>
+    // ray test touch >
   );
 };
 

@@ -5,10 +5,14 @@ import PropTypes from 'prop-types';
 import FavoriteBadge from '../FavoriteBadge';
 import './image-thumb.css';
 
-const ImageThumb = ({ id, title, url, thumbnailUrl }) => {
+// ray test touch <
+const ImageThumb = ({ id, title, url, thumbnailUrl, clickHandler }) => {
+// ray test touch >
   return (
     <div className='image-thumb'>
-      <img src={thumbnailUrl} alt={title} />
+      {/* ray test touch < */}
+      <img src={thumbnailUrl} alt={title} onClick={clickHandler} />
+      {/* ray test touch > */}
       <FavoriteBadge imageId={id} />
     </div>
   );
