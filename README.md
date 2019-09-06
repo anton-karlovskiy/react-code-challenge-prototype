@@ -17,12 +17,13 @@ Assume that this application will be developed further
 * [Link to Glitch App](https://anton-karlovskiy-react-code-challenge.glitch.me/)
 * [Link to Project on Glitch](https://glitch.com/~anton-karlovskiy-react-code-challenge/)
 
-## Installation
+## Installation & Test
 ```
 git clone https://github.com/anton-karlovskiy/react-code-challenge.git
 npm install
 npm start
 npm run build
+npm test
 ```
 
 ## Lighthouse Scores (PWA)
