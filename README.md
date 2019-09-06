@@ -24,3 +24,8 @@ npm install
 npm start
 npm run build
 ```
+
+## Lighthouse Scores (PWA)
+<p align="center">
+  <img src="https://cdn.glitch.com/17213124-8cc0-4b99-862e-de0eac9dcd0e%2Flighthouse-score-pwa.PNG?v=1567765522904" width="640" alt="quicklink">
+</p>
