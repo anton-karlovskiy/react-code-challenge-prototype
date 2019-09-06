@@ -6,12 +6,12 @@ import FavoriteBadge from '../FavoriteBadge';
 import './image-thumb.css';
 
 // ray test touch <
-const ImageThumb = ({ id, title, url, thumbnailUrl, clickHandler }) => {
+const ImageThumb = ({ id, title, url, thumbnailUrl, clickHandler, clickable }) => {
 // ray test touch >
   return (
     <div className='image-thumb'>
       {/* ray test touch < */}
-      <img src={thumbnailUrl} alt={title} onClick={clickHandler} />
+      <img className={ clickable && 'clickable' } src={thumbnailUrl} alt={title} onClick={clickHandler} />
       {/* ray test touch > */}
       <FavoriteBadge imageId={id} />
     </div>
