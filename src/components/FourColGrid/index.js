@@ -2,7 +2,7 @@
 import React from 'react';
 import './four-col-grid.css';
 
-const FourColGrid = ({ header, loading,  children }) => {
+const FourColGrid = ({ header, loading, children }) => {
   const renderElements = () => {
     const gridElements = children.map((element, i) => {
       return (
